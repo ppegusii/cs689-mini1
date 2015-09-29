@@ -32,13 +32,40 @@ def delta(WT, vj):
     return np.multiply(WTwj, denom)
 
 
-def cosadd(WT, a, b, x):
+# If y is specified return the single distance measure for that y.
+# Otherwise return the word with the greatest distance measure.
+def cosadd(WT, a, b, x, y=None):
     # wx_m_wa_p_wb is 1xD
     wx_m_wa_p_wb = WT.loc[x] - WT.loc[a] + WT.loc[b]
     # d is nx1
     d = delta(WT, wx_m_wa_p_wb)
+    # if y is specified then return that correspondig distance measure
+    if y:
+        return d[np.where(WT.index == y)[0][0]]
     # find the index of the maximum delta
     max_idx = np.argmax(d)
+    return WT.index[max_idx]
+
+
+# If y is specified return the single distance measure for that y.
+# Otherwise return the word with the greatest distance measure.
+def cosmult(WT, a, b, x, e=0.001, y=None):
+    # dy[abx] are nx1
+    dya = delta(WT, WT.loc[a])
+    dyb = delta(WT, WT.loc[b])
+    dyx = delta(WT, WT.loc[x])
+    # entry wise multiplication of vectors
+    # dybdyx is nx1
+    dybdyx = np.multiply(dyb, dyx)
+    # dyae is nx1
+    dyae = dya + e
+    # measures is nx1
+    measures = np.multiply(dybdyx, dyae**-1.0)
+    # if y is specified then return that correspondig distance measure
+    if y:
+        return measures[np.where(WT.index == y)[0][0]]
+    # find the index of the maximum measure
+    max_idx = np.argmax(measures)
     return WT.index[max_idx]
 
 
