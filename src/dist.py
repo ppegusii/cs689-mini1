@@ -51,9 +51,12 @@ def cosadd(WT, a, b, x, y=None):
 # Otherwise return the word with the greatest distance measure.
 def cosmult(WT, a, b, x, e=0.001, y=None):
     # dy[abx] are nx1
-    dya = delta(WT, WT.loc[a])
-    dyb = delta(WT, WT.loc[b])
-    dyx = delta(WT, WT.loc[x])
+    # dya = delta(WT, WT.loc[a])
+    # dyb = delta(WT, WT.loc[b])
+    # dyx = delta(WT, WT.loc[x])
+    dya = (delta(WT, WT.loc[a]) + 1.0) / 2.0
+    dyb = (delta(WT, WT.loc[b]) + 1.0) / 2.0
+    dyx = (delta(WT, WT.loc[x]) + 1.0) / 2.0
     # entry wise multiplication of vectors
     # dybdyx is nx1
     dybdyx = np.multiply(dyb, dyx)
