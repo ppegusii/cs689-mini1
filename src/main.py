@@ -24,9 +24,19 @@ def main():
                       'w') as outF:
                 for anlgy in anlgyF:
                     words = anlgy.split()
-                    words.append(
-                        args.distance_measure(WT, WTn, words[0], words[1],
-                                              words[2]))
+                    wordNotFound = False
+                    for word in words:
+                        if word not in WT.index:
+                            print('''"{:s}" in analogy "{:s}" in file "{:s}"
+                                  does not have a vector embedding'''.format(
+                                word, anlgy, anlgyFn))
+                            wordNotFound = True
+                    if wordNotFound:
+                        words.append('**NO_EMBEDDING_FOR_A_WORD**')
+                    else:
+                        words.append(
+                            args.distance_measure(WT, WTn, words[0], words[1],
+                                                  words[2]))
                     outF.write(' '.join(words) + '\n')
 
 

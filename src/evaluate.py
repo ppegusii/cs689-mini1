@@ -16,20 +16,26 @@ def main():
     for resultFn in resultFns:
         lineCnt = 0
         corrCnt = 0
+        ansInQuCnt = 0
         with open(resultFn, 'rb') as resultF:
             for result in resultF:
-                lineCnt += 1
                 words = result.split()
+                if words[4] == '**NO_EMBEDDING_FOR_A_WORD**':
+                    continue
                 if len(words) < 5:
                     break
                 if words[3] == words[4]:
                     corrCnt += 1
+                if words[4] in words[:4]:
+                    ansInQuCnt += 1
+                lineCnt += 1
             if lineCnt < 1:
                 continue
             acc = float(corrCnt) / lineCnt
-            print('{:s} {:0.2f}'.format(
+            ansInQu = ansInQuCnt / lineCnt
+            print('{:s} {:0.2f} {:0.2f}'.format(
                 os.path.basename(resultFn),
-                acc))
+                acc, ansInQu))
         accSum += acc
         resultsCnt += 1
     print('Average {:0.2f}'.format(accSum / resultsCnt))
