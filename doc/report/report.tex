@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[cm]{fullpage}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{moreverb}
+\setdescription{labelindent=\parindent}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code Snippet
+% LaTeX Template
+% Version 1.0 (14/2/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Velimir Gayevskiy (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+
+\usepackage{listings} % Required for inserting code snippets
+\usepackage[usenames,dvipsnames]{color} % Required for specifying custom colors and referring to colors by name
+
+\definecolor{DarkGreen}{rgb}{0.0,0.4,0.0} % Comment color
+\definecolor{highlight}{RGB}{255,251,204} % Code highlight color
+
+\lstdefinestyle{Octave}{ % Define a style for your code snippet, multiple definitions can be made if, for example, you wish to insert multiple code snippets using different programming languages into one document
+language=Octave, % Detects keywords, comments, strings, functions, etc for the language specified
+%backgroundcolor=\color{highlight}, % Set the background color for the snippet - useful for highlighting
+backgroundcolor=\color{white}, % Set the background color for the snippet
+basicstyle=\footnotesize\ttfamily, % The default font size and style of the code
+breakatwhitespace=false, % If true, only allows line breaks at white space
+breaklines=true, % Automatic line breaking (prevents code from protruding outside the box)
+captionpos=b, % Sets the caption position: b for bottom; t for top
+commentstyle=\usefont{T1}{pcr}{m}{sl}\color{DarkGreen}, % Style of comments within the code - dark green courier font
+deletekeywords={}, % If you want to delete any keywords from the current language separate them by commas
+%escapeinside={\%}, % This allows you to escape to LaTeX using the character in the bracket
+firstnumber=1, % Line numbers begin at line 1
+frame=single, % Frame around the code box, value can be: none, leftline, topline, bottomline, lines, single, shadowbox
+frameround=tttt, % Rounds the corners of the frame for the top left, top right, bottom left and bottom right positions
+keywordstyle=\color{Blue}\bf, % Functions are bold and blue
+morekeywords={}, % Add any functions no included by default here separated by commas
+numbers=left, % Location of line numbers, can take the values of: none, left, right
+numbersep=10pt, % Distance of line numbers from the code box
+numberstyle=\tiny\color{Gray}, % Style used for line numbers
+rulecolor=\color{black}, % Frame border color
+showstringspaces=false, % Don't put marks in string spaces
+showtabs=false, % Display tabs in the code as lines
+stepnumber=5, % The step distance between line numbers, i.e. how often will lines be numbered
+stringstyle=\color{Purple}, % Strings are purple
+tabsize=2, % Number of spaces per tab in the code
+}
+\lstdefinestyle{Python}{ % Define a style for your code snippet, multiple definitions can be made if, for example, you wish to insert multiple code snippets using different programming languages into one document
+language=Python, % Detects keywords, comments, strings, functions, etc for the language specified
+%backgroundcolor=\color{highlight}, % Set the background color for the snippet - useful for highlighting
+backgroundcolor=\color{white}, % Set the background color for the snippet
+basicstyle=\footnotesize\ttfamily, % The default font size and style of the code
+breakatwhitespace=false, % If true, only allows line breaks at white space
+breaklines=true, % Automatic line breaking (prevents code from protruding outside the box)
+captionpos=b, % Sets the caption position: b for bottom; t for top
+commentstyle=\usefont{T1}{pcr}{m}{sl}\color{DarkGreen}, % Style of comments within the code - dark green courier font
+deletekeywords={}, % If you want to delete any keywords from the current language separate them by commas
+%escapeinside={\%}, % This allows you to escape to LaTeX using the character in the bracket
+firstnumber=1, % Line numbers begin at line 1
+frame=single, % Frame around the code box, value can be: none, leftline, topline, bottomline, lines, single, shadowbox
+frameround=tttt, % Rounds the corners of the frame for the top left, top right, bottom left and bottom right positions
+keywordstyle=\color{Blue}\bf, % Functions are bold and blue
+morekeywords={}, % Add any functions no included by default here separated by commas
+numbers=left, % Location of line numbers, can take the values of: none, left, right
+numbersep=10pt, % Distance of line numbers from the code box
+numberstyle=\tiny\color{Gray}, % Style used for line numbers
+rulecolor=\color{black}, % Frame border color
+showstringspaces=false, % Don't put marks in string spaces
+showtabs=false, % Display tabs in the code as lines
+stepnumber=5, % The step distance between line numbers, i.e. how often will lines be numbered
+stringstyle=\color{Purple}, % Strings are purple
+tabsize=2, % Number of spaces per tab in the code
+}
+
+% Create a command to cleanly insert a snippet with the style above anywhere in the document
+\newcommand{\insertcodeOctave}[2]{\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1,style=Octave]{#1}\end{itemize}} % The first argument is the script location/filename and the second is a caption for the listing
+\newcommand{\insertcodePython}[2]{\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1,style=Python]{#1}\end{itemize}} % The first argument is the script location/filename and the second is a caption for the listing
+% End Code Snippet
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Vector shortcuts
+\newcommand*{\X}{\Vec{x}}
+\newcommand*{\Y}{\Vec{y}}
+\newcommand*{\Z}{\Vec{z}}
+\newcommand*{\0}{\Vec{0}}
+\newcommand*{\norm}[1]{\lVert#1\rVert_2}
+% Greek shortcuts
+\newcommand*{\al}{\alpha}
+\newcommand*{\be}{\beta}
+\newcommand*{\de}{\delta}
+\newcommand*{\om}{\omega}
+\begin{document}
+\title
+{\begin{flushleft}
+\large
+Patrick Pegus\\
+Mini Project 1\\
+\today\\
+CMPSCI-689\\
+Prof. Sridhar Mahadevan
+\end{flushleft}}
+\author{}
+\date{}
+\maketitle
+\normalsize
+\begin{description}
+	\item[Theory Question 1] \hfill \\
+		The axioms of inner product are:
+		\begin{align*}
+			\textbf{Non-negativity: }&f(\X,\X) \ge 0 \text{ if $0$, $\X$ must be } \0 \\
+			\textbf{Linearity: }&f(\X+\Y,\Z)=f(\X,\Z)+f(\Y,\Z) \\
+			\textbf{Scalar multiple: }&f(\al\X,\Y)=\al \cdot f(\X,\Y) \\
+			\textbf{Symmetry: }&f(\X,\Y)=f(\Y,\X)
+		\end{align*}
+		\begin{description}
+			\item[Non-negativity] \hfill \\
+				This axiom is not satisfied by $\de$. Let $\om_i = \0$. Then $\de(\om_i,\om_i)=\frac{0}{0}$, which is undefined.
+			\item[Linearity] \hfill \\
+				This axiom is not satisfied by $\de$. Let $\norm{\om_i} \ne 1$ or $\norm{\om_j} \ne 1$, for example let $\om_i=[1,2],\om_j=[1,0],\om_k=[0,1]$.
+				Then $\de(\om_i+\om_j,\om_k)\approx 0.7$ and $\de(\om_i,\om_k)+\de(\om_j,\om_k)\approx 0.9$.
+			\item[Scalar multiple] \hfill \\
+				This axiom is not satisfied by $\de$, since it normalizes vectors. For example, let $\al=2$ and $\om_i=[1,0]$.
+				Then $\de(\al\om_i,\om_i)=1$ and $\al\cdot\de(\om_i,\om_i)=2$.
+%				First I prove that $(\al\om_i)^T(\be\om_j) = \al\be\om_i^T\om_j$.
+%				\begin{align*}
+%					(\al\om_i)^T(\be\om_j)
+%					= \sum_l \al\om_{il}\be\om_{jl}
+%					= \al\be\sum_l \om_{il}\om_{jl}
+%					= \al\be\om_i^T\om_j
+%				\end{align*}
+%				Now I prove that $\de$ holds for this axiom.
+%				\begin{align*}
+%					\de(\al\om_i,\om_j) 
+%					= \frac{(\al\om_i)^T\om_j}{\norm{\al\om_i}\norm{\om_j}}
+%					= \frac{(\al\om_i)^T(1\cdot\om_j)}{\sqrt{(\al\om_i)^T(\al\om_i)}\sqrt{\om_j^T\om_j}}
+%					= \frac{\al\om_i^T\om_j}{\sqrt{\al^2\om_i^T\om_i}\sqrt{\om_j^T\om_j}}
+%				\end{align*}
+		\end{description}
+\end{description}
+\end{document}
