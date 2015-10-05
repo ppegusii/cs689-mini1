@@ -11,34 +11,50 @@ def main():
     # http://stackoverflow.com/questions/3207219/how-to-list-all-files-of-a-directory-in-python
     resultFns = [os.path.join(args.results, fn) for fn in
                  next(os.walk(args.results))[2]]
-    accSum = 0.0
-    resultsCnt = 0
+    glbCorrCnt = 0
+    glbLineCnt = 0
+    semCorrCnt = 0
+    semLineCnt = 0
+    synCorrCnt = 0
+    synLineCnt = 0
     for resultFn in resultFns:
         lineCnt = 0
         corrCnt = 0
         ansInQuCnt = 0
         with open(resultFn, 'rb') as resultF:
+            # print(resultFn)
             for result in resultF:
                 words = result.split()
+                # print(words)
                 if words[4] == '**NO_EMBEDDING_FOR_A_WORD**':
                     continue
                 if len(words) < 5:
                     break
                 if words[3] == words[4]:
                     corrCnt += 1
-                if words[4] in words[:4]:
+                if words[4] in words[:3]:
                     ansInQuCnt += 1
                 lineCnt += 1
             if lineCnt < 1:
                 continue
             acc = float(corrCnt) / lineCnt
-            ansInQu = ansInQuCnt / lineCnt
-            print('{:s} {:0.2f} {:0.2f}'.format(
+            ansInQu = float(ansInQuCnt) / lineCnt
+            print('{:s} {:0.3f} {:0.3f}'.format(
                 os.path.basename(resultFn),
                 acc, ansInQu))
-        accSum += acc
-        resultsCnt += 1
-    print('Average {:0.2f}'.format(accSum / resultsCnt))
+        glbLineCnt += lineCnt
+        glbCorrCnt += corrCnt
+        if os.path.basename(resultFn).startswith('gram'):
+            synCorrCnt += corrCnt
+            synLineCnt += lineCnt
+        else:
+            semCorrCnt += corrCnt
+            semLineCnt += lineCnt
+    if semLineCnt > 0:
+        print('Sem Av {:0.3f}'.format(float(semCorrCnt) / semLineCnt))
+    if synLineCnt > 0:
+        print('Syn Av {:0.3f}'.format(float(synCorrCnt) / synLineCnt))
+    print('Average {:0.3f}'.format(float(glbCorrCnt) / glbLineCnt))
 
 
 def parseArgs(args):

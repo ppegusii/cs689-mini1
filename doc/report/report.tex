@@ -105,6 +105,7 @@ tabsize=2, % Number of spaces per tab in the code
 \newcommand*{\be}{\beta}
 \newcommand*{\de}{\delta}
 \newcommand*{\om}{\omega}
+\newcommand*{\ep}{\epsilon}
 \begin{document}
 \title
 {\begin{flushleft}
@@ -121,36 +122,126 @@ Prof. Sridhar Mahadevan
 \normalsize
 \begin{description}
 	\item[Theory Question 1] \hfill \\
-		The axioms of inner product are:
+		To be an inner product, a function must satisfy the following properties:
 		\begin{align*}
 			\textbf{Non-negativity: }&f(\X,\X) \ge 0 \text{ if $0$, $\X$ must be } \0 \\
 			\textbf{Linearity: }&f(\X+\Y,\Z)=f(\X,\Z)+f(\Y,\Z) \\
 			\textbf{Scalar multiple: }&f(\al\X,\Y)=\al \cdot f(\X,\Y) \\
 			\textbf{Symmetry: }&f(\X,\Y)=f(\Y,\X)
 		\end{align*}
-		\begin{description}
-			\item[Non-negativity] \hfill \\
-				This axiom is not satisfied by $\de$. Let $\om_i = \0$. Then $\de(\om_i,\om_i)=\frac{0}{0}$, which is undefined.
-			\item[Linearity] \hfill \\
-				This axiom is not satisfied by $\de$. Let $\norm{\om_i} \ne 1$ or $\norm{\om_j} \ne 1$, for example let $\om_i=[1,2],\om_j=[1,0],\om_k=[0,1]$.
-				Then $\de(\om_i+\om_j,\om_k)\approx 0.7$ and $\de(\om_i,\om_k)+\de(\om_j,\om_k)\approx 0.9$.
-			\item[Scalar multiple] \hfill \\
-				This axiom is not satisfied by $\de$, since it normalizes vectors. For example, let $\al=2$ and $\om_i=[1,0]$.
-				Then $\de(\al\om_i,\om_i)=1$ and $\al\cdot\de(\om_i,\om_i)=2$.
-%				First I prove that $(\al\om_i)^T(\be\om_j) = \al\be\om_i^T\om_j$.
+%		\begin{description}
+%			\item[Non-negativity] \hfill \\
+%				This axiom is not satisfied by $\de$. Let $\om_i = \0$. Then $\de(\om_i,\om_i)=\frac{0}{0}$, which is undefined.
+%			\item[Linearity] \hfill \\
+%				This axiom is not satisfied by $\de$. Let $\norm{\om_i} \ne 1$ or $\norm{\om_j} \ne 1$, for example let $\om_i=[1,2],\om_j=[1,0],\om_k=[0,1]$.
+%				Then $\de(\om_i+\om_j,\om_k)\approx 0.7$ and $\de(\om_i,\om_k)+\de(\om_j,\om_k)\approx 0.9$.
+%			\item[Scalar multiple] \hfill \\
+%				This axiom is not satisfied by $\de$, since it normalizes vectors. For example, let $\al=2$ and $\om_i=[1,0]$.
+%				Then $\de(\al\om_i,\om_i)=1$ and $\al\cdot\de(\om_i,\om_i)=2$.
+%%				First I prove that $(\al\om_i)^T(\be\om_j) = \al\be\om_i^T\om_j$.
+%%				\begin{align*}
+%%					(\al\om_i)^T(\be\om_j)
+%%					= \sum_l \al\om_{il}\be\om_{jl}
+%%					= \al\be\sum_l \om_{il}\om_{jl}
+%%					= \al\be\om_i^T\om_j
+%%				\end{align*}
+%%				Now I prove that $\de$ holds for this axiom.
+%%				\begin{align*}
+%%					\de(\al\om_i,\om_j) 
+%%					= \frac{(\al\om_i)^T\om_j}{\norm{\al\om_i}\norm{\om_j}}
+%%					= \frac{(\al\om_i)^T(1\cdot\om_j)}{\sqrt{(\al\om_i)^T(\al\om_i)}\sqrt{\om_j^T\om_j}}
+%%					= \frac{\al\om_i^T\om_j}{\sqrt{\al^2\om_i^T\om_i}\sqrt{\om_j^T\om_j}}
+%%				\end{align*}
+%			\item[Scalar multiple] \hfill \\
+%				First I prove that $\om_i^T\om_j = \om_j^T\om_i$.
 %				\begin{align*}
-%					(\al\om_i)^T(\be\om_j)
-%					= \sum_l \al\om_{il}\be\om_{jl}
-%					= \al\be\sum_l \om_{il}\om_{jl}
-%					= \al\be\om_i^T\om_j
+%					\om_i^T\om_j
+%					&= \sum_l \om_{il}\om_{jl}
+%					= \sum_l \om_{jl}\om_{il} \text{, since scalar multiplication is commutative} \\
+%					&= \om_j^T\om_i
 %				\end{align*}
 %				Now I prove that $\de$ holds for this axiom.
 %				\begin{align*}
-%					\de(\al\om_i,\om_j) 
-%					= \frac{(\al\om_i)^T\om_j}{\norm{\al\om_i}\norm{\om_j}}
-%					= \frac{(\al\om_i)^T(1\cdot\om_j)}{\sqrt{(\al\om_i)^T(\al\om_i)}\sqrt{\om_j^T\om_j}}
-%					= \frac{\al\om_i^T\om_j}{\sqrt{\al^2\om_i^T\om_i}\sqrt{\om_j^T\om_j}}
+%					\de(\om_i,\om_j) 
+%					&= \frac{\om_i^T\om_j}{\norm{\om_i}\norm{\om_j}}
+%					= \frac{\om_j^T\om_i}{\norm{\om_i}\norm{\om_j}}
+%					= \frac{\om_j^T\om_i}{\norm{\om_j}\norm{\om_i}} \text{, since scalar multiplication is commutative} \\
+%					&= \de(\om_j,\om_i) 
 %				\end{align*}
-		\end{description}
+%		\end{description}
+		The cosine distance $\de$ does not satisfy the scalar multiple property.
+		For example, let $\al=2$ and $\om_i^T=[1,0]$.
+		Then $\de(\al\om_i,\om_i)=1$ and $\al\cdot\de(\om_i,\om_i)=2$.
+	\item[Theory Question 2] \hfill \\
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|ccccc|rr|}
+				\hline
+				$a$ & $b$ & $x$ & $y$ & $Dim.$ & $COSADD_y$ & $COSMULT_y$ \\
+				\hline
+				London & England & Baghdad & Mosul & 50 & 0.648 & 0.845 \\
+				London & England & Baghdad & Iraq & 50 & 0.727 & 0.921 \\
+				London & England & Baghdad & Mosul & 200 & 0.506 & 0.766 \\
+				London & England & Baghdad & Iraq & 200 & 0.574 & 0.835 \\
+				\hline
+			\end{tabular}
+			\caption{
+				Given the analogy $a$ is to $b$ as $x$ is to $y$,
+				let $COSADD_y = \de(\om_y,\om_x-\om_a+\om_b)$ and
+				$COSSMULT_y = \frac{\de(\om_y,\om_b)\de(\om_y,\om_x)}{\de(\om_y,\om_a)+\ep}$.
+			}
+			\label{tab:comp}
+		\end{table}
+		As shown in Table ~\ref{tab:comp}, both distance measures yield a greater value for the correct answer, Iraq, regardless of the embedding dimension.
+	\item[Programming Question 3] \hfill \\
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|cc|rrr|}
+				\hline
+				Dist. Meas. & Dim. & Sem. & Syn. & Tot. \\
+				\hline
+				COSADD & 50 & 49.9 & 44.7 & 47.0 \\
+				COSMULT & 50 & 36.5 & 27.9 & 31.7 \\
+				\hline
+				COSADD & 100 & 59.2 & 61.6 & 61.3 \\
+				COSMULT & 100 & 55.6 & 41.4 & 47.8 \\
+				\hline
+				COSADD & 200 & 75.5 & 65.7 & 70.1 \\
+				COSMULT & 200 & 56.9 & 40.0 & 47.6 \\
+				\hline
+			\end{tabular}
+			\caption{Comparison of distance measure accuracies on Google word analogies. The various dimension word embeddings were created by GloVe from the Gigaword5 + Wikipedia2014 6B token corpus.}
+			\label{tab:google}
+		\end{table}
+		As shown in Table ~\ref{tab:google}, COSADD significantly outperformed COSMULT in both semantic and syntactic analogy tasks, which is consistent with \cite{glove}.
+		Also consistent with \cite{glove}, accuracy generally increases at a decreasing rate with increased word embedding dimensionality.
+		Finally, accuracy is higher on semantic tasks with both distance measures.
+		This may be caused by GloVe's use of the sum of their model's two ouptut word embedding sets or a larger and more symmetric context window.\cite{glove} 
+	\item[Programming Question 4] \hfill \\
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|cc|r|}
+				\hline
+				Dist. Meas. & Dim. & Tot. \\
+				\hline
+				COSADD & 50 & 39.2 \\
+				COSMULT & 50 & 21.2 \\
+				\hline
+				COSADD & 100 & 55.7 \\
+				COSMULT & 100 & 38.5 \\
+				\hline
+				COSADD & 200 & 64.0 \\
+				COSMULT & 200 & 41.4 \\
+				\hline
+			\end{tabular}
+			\caption{Comparison of distance measure accuracies on syntactic MSR word analogies. The word embeddings are the same as Table ~\ref{tab:google}.}
+			\label{tab:msr}
+		\end{table}
+		The trends in accuracy between distance measures and across word embedding dimensionality in Table ~\ref{tab:msr} are similar to those seen with the Google word analogies.
+		One difference is that the accuracy of COSMULT consistently increases with the dimension of the word embeddings.
 \end{description}
+
+\bibliographystyle{abbrv}
+\bibliography{report}
+
 \end{document}
