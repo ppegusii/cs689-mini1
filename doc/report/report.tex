@@ -184,6 +184,12 @@ Prof. Sridhar Mahadevan
 				London & England & Baghdad & Mosul & 200 & 0.506 & 0.766 \\
 				London & England & Baghdad & Iraq & 200 & 0.574 & 0.835 \\
 				\hline
+				Cairo & Egypt & Hanoi & Vietnam & 50 & 0.824 & 0.9754 \\
+				Cairo & Egypt & Hanoi & Laos & 50 & 0.850 & 0.9746 \\
+				\hline
+				boy & girl & father & mother & 50 & 0.929 & 0.953 \\
+				boy & girl & father & daughter & 50 & 0.926 & 0.956 \\
+				\hline
 			\end{tabular}
 			\caption{
 				Given the analogy $a$ is to $b$ as $x$ is to $y$,
@@ -193,6 +199,9 @@ Prof. Sridhar Mahadevan
 			\label{tab:comp}
 		\end{table}
 		As shown in Table ~\ref{tab:comp}, both distance measures yield a greater value for the correct answer, Iraq, regardless of the embedding dimension.
+		This disagrees with the results in \cite{levy}, but the computation involves different word embeddings.
+		Although I can cherry pick a few examples where COSMULT is more accurate than COSADD, such as the ``Cairo is to Egypt as Hanoi is to Vietnam'', COSADD is generally more accurate on all analogy tasks as seen below.
+		Even in the example ``boy is to girl as father is to mother'', where the greater distance, sex, should be relatively reduced by the logarithm, while the smaller distance, age, should be amplified, COSADD outperforms COSMULT.
 	\item[Programming Question 3] \hfill \\
 		\begin{table}[H]
 			\centering
@@ -216,7 +225,7 @@ Prof. Sridhar Mahadevan
 		As shown in Table ~\ref{tab:google}, COSADD significantly outperformed COSMULT in both semantic and syntactic analogy tasks, which is consistent with \cite{glove}.
 		Also consistent with \cite{glove}, accuracy generally increases at a decreasing rate with increased word embedding dimensionality.
 		Finally, accuracy is higher on semantic tasks with both distance measures.
-		This may be caused by GloVe's use of the sum of their model's two ouptut word embedding sets or a larger and more symmetric context window.\cite{glove} 
+		This may be caused by GloVe's use of the sum of their model's two output word embedding sets or a larger and more symmetric context window.\cite{glove} 
 	\item[Programming Question 4] \hfill \\
 		\begin{table}[H]
 			\centering

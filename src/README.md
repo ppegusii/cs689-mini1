@@ -36,3 +36,5 @@ optional arguments:
 ```
 ### Example
 `./main.py glove.6B.50d.txt google_analogy_directory/ output_directory/ -d cosmult`
+## Evaluation
+`./evaluate.py outputdirectory/`
